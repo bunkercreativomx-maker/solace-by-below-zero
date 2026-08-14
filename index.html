@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solace by Below Zero — Aprobación de campaña (30 días + Ads)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#D8B56A;--sage:#7FA98A;--ice:#A8CDE0;--cream:#F6F1E7;--ink:#22302A;--mut:#5f7168;
+    --bg:#101713;--card:rgba(255,255,255,.045);--line:rgba(255,255,255,.10);
+    --approved:#14c96e;--changes:#E8A13D;--pending:#c9b458;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--cream);line-height:1.55;overflow-x:hidden;
+    background-image:radial-gradient(900px 520px at 10% -8%, rgba(216,181,106,.14), transparent 60%),
+      radial-gradient(820px 520px at 96% 0%, rgba(127,169,138,.14), transparent 55%),
+      linear-gradient(180deg,#101713,#0c120f);min-height:100vh;}
+  .bar{position:sticky;top:0;z-index:30;background:rgba(16,23,19,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);padding:13px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+  .bar .stat{font-size:.85rem;color:var(--mut)}
+  .bar .stat b{color:var(--cream)}
+  .brandline{font-weight:800;color:#fff;font-family:'Playfair Display',serif;font-size:1.05rem;margin-right:auto;letter-spacing:.3px}
+  .brandline span{color:var(--gold)}
+  .wrap{max-width:1360px;margin:0 auto;padding:30px 22px 70px}
+  header{text-align:center;padding:62px 16px 36px;}
+  .kicker{display:inline-block;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);padding:6px 16px;border-radius:30px;background:rgba(216,181,106,.07);margin-bottom:18px;}
+  h1{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(34px,6vw,58px);line-height:1.05;letter-spacing:-.5px;
+    background:linear-gradient(100deg,#fff 10%,#e8cf9e 45%,var(--sage) 92%);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .sub{color:var(--mut);font-size:15px;margin-top:14px;}
+  .sub b{color:var(--cream);font-weight:600}
+  .section-title{font-family:'Playfair Display',serif;font-size:clamp(22px,3.4vw,30px);font-weight:700;color:#fff;margin:54px 0 22px;
+    display:flex;align-items:center;gap:14px;}
+  .section-title::before{content:"";width:38px;height:2px;background:linear-gradient(90deg,var(--gold),var(--sage));border-radius:2px;}
+  .section-title .count{font-family:'Inter',sans-serif;font-size:13px;color:var(--mut);font-weight:600;letter-spacing:0;}
+  .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;align-items:start;}
+  @media(max-width:1200px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));}}
+  @media(max-width:820px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+  @media(max-width:520px){.grid{grid-template-columns:1fr;}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);position:relative;display:flex;flex-direction:column;
+    transition:transform .45s cubic-bezier(.2,.8,.2,1),border-color .4s,box-shadow .45s;box-shadow:0 10px 30px rgba(0,0,0,.35);
+    border-top:4px solid var(--pending);}
+  .card.ad{border-color:rgba(216,181,106,.3);box-shadow:0 14px 40px rgba(216,181,106,.10);}
+  .card.approved{border-top-color:var(--approved);}
+  .card.changes{border-top-color:var(--changes);}
+  .card:hover{transform:translateY(-8px);border-color:rgba(232,207,158,.5);box-shadow:0 26px 60px rgba(216,181,106,.16);}
+  .top{padding:12px 14px;background:linear-gradient(135deg,rgba(35,54,44,.6),rgba(24,38,31,.4));border-bottom:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;gap:6px;}
+  .dt{font-weight:800;color:#fff;font-size:.92rem}
+  .dt small{color:var(--ice);font-weight:600;font-size:.78rem;margin-left:5px}
+  .pill{font-size:.66rem;font-weight:800;padding:4px 9px;border-radius:6px;background:rgba(127,169,138,.15);color:var(--sage);border:1px solid var(--sage)}
+  .adtag{font-size:.66rem;font-weight:800;padding:4px 9px;border-radius:6px;background:var(--gold);color:#1a1408;letter-spacing:.5px}
+  .imgwrap{position:relative;background:#0d1511;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:zoom-in;}
+  .imgwrap img{width:100%;height:auto;max-height:560px;object-fit:contain;display:block;-webkit-user-drag:none;user-select:none;
+    transition:transform .5s cubic-bezier(.2,.8,.2,1);}.card:hover .imgwrap img{transform:scale(1.03);}
+  .imgwrap .ph{color:var(--mut);font-size:.85rem;text-align:center;padding:24px;}
+  .statusflag{position:absolute;top:10px;left:10px;font-size:.66rem;font-weight:800;padding:4px 9px;border-radius:6px;z-index:2;letter-spacing:.5px}
+  .statusflag.pending{background:rgba(201,180,88,.92);color:#000}
+  .statusflag.approved{background:rgba(20,201,110,.95);color:#022}
+  .statusflag.changes{background:var(--changes);color:#201300}
+  .body{padding:15px;flex:1;display:flex;flex-direction:column;}
+  .topic{font-weight:800;color:#fff;font-size:1.02rem;margin-bottom:5px;line-height:1.25}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+  .tag{font-size:.66rem;padding:3px 8px;border-radius:5px;background:rgba(24,38,31,.6);color:var(--mut);border:1px solid var(--line)}
+  .aida{font-size:.86rem;margin:6px 0 4px;color:#dce8e0;line-height:1.55}
+  .compliance{font-size:.74rem;margin:6px 0 2px;padding:8px 10px;border-radius:8px;background:rgba(232,161,61,.12);border:1px solid rgba(232,161,61,.35);color:var(--changes)}
+  .actions{padding:13px 14px;border-top:1px solid var(--line);display:flex;gap:9px;flex-wrap:wrap;
+    background:rgba(12,18,15,.3);}
+  .btn{flex:1;min-width:96px;padding:11px;border:none;border-radius:11px;font-weight:800;font-size:.82rem;cursor:pointer;
+    transition:transform .22s,box-shadow .3s,filter .3s;font-family:inherit;color:#fff;}
+  .btn.approve{background:linear-gradient(120deg,#0e9b54,#16c96e);box-shadow:0 8px 22px rgba(20,201,110,.28);}
+  .btn.change{background:linear-gradient(120deg,#a86a1e,#e8a13d);color:#201300;}
+  .btn.approve.on{background:linear-gradient(120deg,#14c96e,#4ade80);color:#022;}
+  .btn.change.on{background:linear-gradient(120deg,#e8a13d,#f5c56b);color:#201300;}
+  .btn:hover{transform:translateY(-2px);filter:brightness(1.08);}
+  .btn:active{transform:translateY(0) scale(.97);}
+  .legend{color:var(--mut);font-size:.8rem;padding:4px 2px 0}
+  .legend b{color:var(--cream)}
+  .note{width:100%;min-height:58px;padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:#17231d;color:var(--cream);font-size:.82rem;font-family:inherit;resize:vertical;margin-top:2px;}
+  .note:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(216,181,106,.18);}
+  .submit{position:sticky;bottom:0;z-index:25;background:rgba(12,18,15,.92);backdrop-filter:blur(14px);border-top:1px solid var(--gold);
+    padding:16px 20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center;}
+  .field{padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:#17231d;color:var(--cream);font-size:.92rem;min-width:220px;font-family:inherit;}
+  .field:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(216,181,106,.18);}
+  .send{background:var(--gold);color:#1a1408;font-weight:900;padding:13px 30px;border:none;border-radius:11px;font-size:1rem;cursor:pointer;
+    box-shadow:0 10px 30px rgba(216,181,106,.32);transition:transform .22s,filter .3s;}
+  .send:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .send:disabled{opacity:.5;cursor:not-allowed;transform:none;filter:none;}
+  .toast{position:fixed;top:22px;left:50%;transform:translateX(-50%) translateY(-120px);background:#14c96e;color:#022;padding:14px 26px;
+    z-index:99;border-radius:12px;font-weight:800;box-shadow:0 14px 40px rgba(20,201,110,.4);transition:transform .5s cubic-bezier(.2,.9,.2,1);pointer-events:none;}
+  .toast.show{transform:translateX(-50%) translateY(0);}
+  .lightbox{position:fixed;inset:0;background:rgba(6,10,18,.95);z-index:100;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(8px);}
+  .lightbox.on{display:flex;animation:fadeUp .25s both;}
+  .lightbox img{max-width:92vw;max-height:88vh;width:auto;height:auto;object-fit:contain;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6);-webkit-user-drag:none;user-select:none;}
+  .lbclose{position:absolute;top:20px;right:26px;color:#fff;font-size:30px;cursor:pointer;font-weight:700;line-height:1;opacity:.85;}
+  .lbhint{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:var(--mut);font-size:12px;}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.reveal,.kicker,h1,.sub{animation:none!important;opacity:1!important;transform:none!important}.card:hover{transform:none}.card:hover .imgwrap img{transform:none}}
+  .team-badge{position:fixed;top:10px;right:10px;background:rgba(216,181,106,.2);color:var(--gold);font-size:.7rem;font-weight:700;
+    padding:6px 12px;border-radius:20px;z-index:100;border:1px solid rgba(216,181,106,.3);}
+  .changes-req{background:rgba(232,161,61,.1);border:1px solid rgba(232,161,61,.3);border-radius:8px;padding:10px 14px;margin:8px 0;}
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="brandline">✨ Solace <span>by Below Zero</span></div>
+  <div class="stat">Total: <b>30</b></div>
+  <div class="stat">✅ Aprobados: <b id="cOk">0</b></div>
+  <div class="stat">✏️ Cambios: <b id="cCh">0</b></div>
+  <div class="stat">⏳ Pendientes: <b id="cPe">30</b></div>
+</div>
+
+<header>
+  <span class="kicker">Revisión de campaña · Solace by Below Zero</span>
+  <h1>Solace by Below Zero</h1>
+  <p class="sub"><b>30-Day Facebook Content + Meta Ads · Dallas, TX</b><br>
+  Facials $89.99 · Martes 2x1 · Crecimiento de cabello · Extensiones Remy &nbsp;|&nbsp; 📞 (956) 656-0544 / (915) 529-8565 · beyondthebeauty.com</p>
+  <div style="margin-top:14px;padding:10px 16px;background:rgba(232,161,61,.1);border-radius:10px;display:inline-block;max-width:760px;">
+    <span style="color:var(--changes);font-weight:700;font-size:.8rem;">⚠️ Términos del 2x1 pendientes de confirmar con el cliente (qué cubre, elegibilidad, vigencia)</span>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="section-title">Facebook Content — Calendario 30 días <span class="count">(30 posts)</span></div>
+  <div class="grid" id="grid"></div>
+
+  <div class="section-title">Facebook Ads — Campaña mensual <span class="count">(8 ads)</span></div>
+  <div class="grid" id="ads"></div>
+
+  <p class="legend" style="margin-top:14px">Revisa cada post: imagen + copy. Pulsa <b>Aprobar</b> o <b>Solicitar cambios</b> con tu nota. Luego escribe tu nombre y pulsa <b>Enviar aprobación</b>.</p>
+</div>
+
+<div class="submit" id="submitDiv">
+  <input class="field" id="clientName" placeholder="Tu nombre" />
+  <button class="send" id="sendBtn" onclick="submitReview()">✅ Enviar aprobación</button>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="lightbox" id="lb" onclick="document.getElementById('lb').classList.remove('on')">
+  <span class="lbclose" onclick="document.getElementById('lb').classList.remove('on')">✕</span>
+  <img id="lbimg" src="" alt="">
+  <div class="lbhint">Clic en cualquier lado para cerrar</div>
+</div>
+
+<script>
+const SUPABASE_URL='https://nmykwwhpjukmlzhaimuu.supabase.co';
+const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5teWt3d2hwanVrbWx6aGFpbXV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUwMTc3NzAsImV4cCI6MjEwMDU5Mzc3MH0.XAnVz_2Z8YpHYqSK8u_mYeS5o__ULVwi9SqqByVpE_o';
+const CLIENT='solace-by-below-zero';
+const CAMPAIGN='aug-sep-2026';
+
+const POSTS=[{"id": 1, "date": "2026-08-17", "day": "Lun", "pillar": "Brand", "topic": "Bienvenida / presentación", "cta": "Síguenos y reserva tu primera cita.", "hook": "Tu nuevo lugar favorito para el cuidado de la piel está en Dallas.", "body": "Solace by Below Zero abrió sus puertas para consentirte: faciales premium, tratamientos para el crecimiento del cabello y extensiones de lujo.", "action": "Síguenos y reserva tu primera cita.", "tags": ["#SolaceByBelowZero", "#DallasTX", "#MedSpa", "#SkinCare"], "visual": "Recepción de med spa premium, luz natural, paleta marfil y verde salvia, nombre del negocio en serif elegante, ambiente tranquilo con velas y toallas blancas"}, {"id": 2, "date": "2026-08-18", "day": "Mar", "pillar": "Conversion", "topic": "MARTES 2x1 $89.99", "cta": "Reserva hoy: (956) 656-0544 / (915) 529-8565.", "hook": "Martes de 2x1: dos faciales por $89.99.", "body": "Trae a tu mejor amiga o llega sola y repite la experiencia. Todos los faciales entran al 2x1 de los martes.", "action": "Reserva hoy: (956) 656-0544 / (915) 529-8565.", "tags": ["#Martes2x1", "#Faciales", "#DallasTX", "#Oferta"], "visual": "Badge grande MARTES 2X1 $89.99 sobre foto de dos camillas de spa con toallas, luz cálida, acento azul hielo"}, {"id": 3, "date": "2026-08-19", "day": "Mié", "pillar": "Education", "topic": "Deep Cleanse Facial", "cta": "Agenda tu limpieza profunda.", "hook": "Tu piel acumula más de lo que ves.", "body": "Suciedad, grasa y células muertas se esconden en tus poros. El Deep Cleanse Facial limpia profundamente, destapa poros y deja tu piel fresca y equilibrada.", "action": "Agenda tu limpieza profunda.", "tags": ["#DeepCleanse", "#LimpiezaFacial", "#PielLimpia", "#DallasTX"], "visual": "Macro de poros con gotas de suero y textura de piel natural, etiqueta Deep Cleanse Facial, badge $89.99"}, {"id": 4, "date": "2026-08-20", "day": "Jue", "pillar": "Service", "topic": "Acne Facial", "cta": "Consulta si es adecuado para tu piel.", "hook": "Brotes que no se van solos: hay solución.", "body": "El Acne Facial combate el acné activo, reduce el enrojecimiento y controla el exceso de grasa para prevenir futuros brotes.", "action": "Consulta si es adecuado para tu piel.", "tags": ["#AcneFacial", "#PielSana", "#ControlDeBrotes", "#DallasTX"], "visual": "Esteticista con guantes aplicando tratamiento en rostro relajado, luz clínica suave, badge Acne Facial $89.99"}, {"id": 5, "date": "2026-08-21", "day": "Vie", "pillar": "Engagement", "topic": "Encuesta de faciales", "cta": "Vota en los comentarios 👇", "hook": "¿Cuál de nuestros faciales es el tuyo?", "body": "1️⃣ Deep Cleanse · 2️⃣ Acne · 3️⃣ Brightening · 4️⃣ Anti-Aging. Cuéntanos cuál necesitas y te decimos qué esperar.", "action": "Vota en los comentarios 👇", "tags": ["#Faciales", "#EligeTuFacial", "#DallasTX"], "visual": "Collage 2x2 de los cuatro faciales con número de opción, paleta coordinada marfil/salvia"}, {"id": 6, "date": "2026-08-22", "day": "Sáb", "pillar": "Trust", "topic": "Qué esperar en tu cita", "cta": "Reserva con confianza.", "hook": "Tu primera cita, paso a paso.", "body": "Llegas, te relajas, y un profesional evalúa tu piel antes de cada facial. Todo es higiénico, personalizado y pensado para ti.", "action": "Reserva con confianza.", "tags": ["#MedSpa", "#ExperienciaSpa", "#DallasTX"], "visual": "Proceso en 3 pasos: bienvenida → análisis de piel → facial, iconografía limpia, serif elegante"}, {"id": 7, "date": "2026-08-23", "day": "Dom", "pillar": "Lifestyle", "topic": "Domingo de self-care", "cta": "Agenda tu momento de paz.", "hook": "Domingo = día de consentirte.", "body": "Un facial no es un lujo: es tiempo para ti. Esta semana, regálate una hora de calma.", "action": "Agenda tu momento de paz.", "tags": ["#SelfCare", "#DomingoDeSpa", "#DallasTX"], "visual": "Mujer relajada con toalla blanca y ojos cerrados, luz dorada de ventana, sensación de paz, sin texto pesado"}, {"id": 8, "date": "2026-08-24", "day": "Lun", "pillar": "Service", "topic": "Brightening Facial", "cta": "Agenda tu cita de luminosidad.", "hook": "Tu piel tiene luz propia: déjala brillar.", "body": "El Brightening Facial atenúa manchas oscuras, unifica el tono y aumenta la luminosidad para una tez radiante.", "action": "Agenda tu cita de luminosidad.", "tags": ["#BrighteningFacial", "#PielRadiante", "#TonoUniforme", "#DallasTX"], "visual": "Rostro femenino con piel luminosa natural, luz suave de ventana, badge Brightening Facial $89.99, tonos marfil/dorado"}, {"id": 9, "date": "2026-08-25", "day": "Mar", "pillar": "Conversion", "topic": "MARTES 2x1 $89.99", "cta": "Aparta tu lugar hoy.", "hook": "Hoy es martes: 2x1 en todos los faciales.", "body": "Dos faciales por $89.99. El plan perfecto para ir con amiga, hermana o pareja.", "action": "Aparta tu lugar hoy.", "tags": ["#Martes2x1", "#OfertaFacial", "#DallasTX"], "visual": "Dos copas de bienvenida o dos toallas enrolladas sobre camillas gemelas, badge MARTES 2X1 $89.99 destacado"}, {"id": 10, "date": "2026-08-26", "day": "Mié", "pillar": "Education", "topic": "Mito: lavar más = piel limpia", "cta": "Déjanos tu piel en manos expertas.", "hook": "Mito: lavarte la cara más veces la limpia más.", "body": "Lavar en exceso irrita y desequilibra tu piel. La limpieza profunda profesional es la que realmente destapa poros sin dañar la barrera.", "action": "Déjanos tu piel en manos expertas.", "tags": ["#SkinCareTips", "#MitosDeLaPiel", "#DallasTX"], "visual": "Tarjeta educativa MITO vs REALIDAD, tipografía serif, icono de gota, paleta salvia/marfil"}, {"id": 11, "date": "2026-08-27", "day": "Jue", "pillar": "Service", "topic": "Anti-Aging Facial", "cta": "Consulta si es adecuado para ti.", "hook": "La firmeza de tu piel se puede trabajar.", "body": "El Anti-Aging Facial reduce líneas finas y arrugas, mejora la elasticidad y restaura una apariencia joven y saludable.", "action": "Consulta si es adecuado para ti.", "tags": ["#AntiAging", "#PielFirme", "#Faciales", "#DallasTX"], "visual": "Rostro femenino maduro elegante con piel saludable, luz editorial, badge Anti-Aging Facial $89.99, tonos neutros premium"}, {"id": 12, "date": "2026-08-28", "day": "Vie", "pillar": "Engagement", "topic": "Etiqueta a alguien", "cta": "Etiquétalos en los comentarios.", "hook": "Etiqueta a quien necesita un facial urgente 😌", "body": "Esa amiga que siempre anda cansada, tu hermana, tu mamá... Ellos también merecen un día de spa.", "action": "Etiquétalos en los comentarios.", "tags": ["#TagAFriend", "#DiaDeSpa", "#DallasTX"], "visual": "Dos amigas riendo con toallas blancas y mascarillas, ambiente spa luminoso, texto corto 'Etiqueta a tu amiga'"}, {"id": 13, "date": "2026-08-29", "day": "Sáb", "pillar": "Service", "topic": "Crecimiento de cabello", "cta": "Consulta si es adecuado para ti.", "hook": "El cabello también necesita cuidados especializados.", "body": "Nuestro tratamiento para el crecimiento del cabello cuida tu cuero cabelludo y estimula un cabello más sano y fuerte.", "action": "Consulta si es adecuado para ti.", "tags": ["#HairGrowth", "#CabelloSano", "#ScalpCare", "#DallasTX"], "visual": "Mujer con cabello largo y brillante, manos tocando cuero cabelludo suavemente, luz cálida, texto 'Tratamiento crecimiento de cabello'"}, {"id": 14, "date": "2026-08-30", "day": "Dom", "pillar": "Lifestyle", "topic": "Rutina en casa", "cta": "¿Quieres un tip personalizado? Escríbenos.", "hook": "Entre citas, tu piel se cuida en casa.", "body": "Limpieza suave, hidratación y protector solar. Los básicos que complementan tu facial.", "action": "¿Quieres un tip personalizado? Escríbenos.", "tags": ["#SkinCareRoutine", "#TipsDePiel", "#DallasTX"], "visual": "Flat lay de skincare: limpiador, serum, crema y protector solar sobre mármol, luz natural, estética minimal premium"}, {"id": 15, "date": "2026-08-31", "day": "Lun", "pillar": "Education", "topic": "¿Cada cuánto un facial?", "cta": "Arma tu plan mensual con nosotros.", "hook": "¿Cada cuánto deberías hacerte un facial?", "body": "Para mantener resultados visibles, lo ideal es una rutina mensual. Tu piel se renueva y los beneficios se acumulan.", "action": "Arma tu plan mensual con nosotros.", "tags": ["#FacialMensual", "#SkinCare", "#DallasTX"], "visual": "Calendario con círculos en los días, icono de flor de loto, gráfico educativo limpio, paleta marfil/salvia"}, {"id": 16, "date": "2026-09-01", "day": "Mar", "pillar": "Conversion", "topic": "MARTES 2x1 $89.99", "cta": "Reserva hoy.", "hook": "Septiembre empieza con 2x1 en faciales.", "body": "Martes de 2x1: dos faciales por $89.99. El mejor plan para empezar el mes renovada.", "action": "Reserva hoy.", "tags": ["#Martes2x1", "#Septiembre", "#DallasTX"], "visual": "Badge MARTES 2X1 $89.99 sobre fondo texturizado spa con hojas de eucalipto, premium"}, {"id": 17, "date": "2026-09-02", "day": "Mié", "pillar": "Service", "topic": "Extensiones Clip N' Go", "cta": "Pídelas en beyondthebeauty.com", "hook": "18 pulgadas de cabello Remy de lujo, en minutos.", "body": "Las Clip N' Go son extensiones clip-in de Remy human hair: 7 piezas, 18\", se ponen en minutos y duran de 6 a 9 meses.", "action": "Pídelas en beyondthebeauty.com", "tags": ["#HairExtensions", "#ClipNGo", "#RemyHair", "#BeyondTheBeauty"], "visual": "Extensiones clip-in de cabello Remy sobre fondo neutro, mechones sedosos, etiqueta Clip N' Go 18\", precio $650"}, {"id": 18, "date": "2026-09-03", "day": "Jue", "pillar": "Education", "topic": "Cuidado de extensiones", "cta": "Descubre más en beyondthebeauty.com", "hook": "Así duran 6-9 meses tus extensiones.", "body": "Lávalas, acondiciónalas y péinalas como tu propio cabello. Guárdalas enrolladas en su caja y se mantienen perfectas.", "action": "Descubre más en beyondthebeauty.com", "tags": ["#HairCare", "#Extensiones", "#TipsDeCabello"], "visual": "Flat lay: extensiones enrolladas en su caja, cepillo de cerdas suaves y productos para cabello, estética limpia"}, {"id": 19, "date": "2026-09-04", "day": "Vie", "pillar": "Engagement", "topic": "¿Largo o volumen?", "cta": "Responde en comentarios.", "hook": "Tú: ¿largas o con volumen? 🤔", "body": "Con Clip N' Go ganas largo y cuerpo al instante. Cuéntanos cuál es tu estilo.", "action": "Responde en comentarios.", "tags": ["#LargoOVolumen", "#HairGoals", "#DallasTX"], "visual": "Dos peinados lado a lado: cabello largo liso vs cabello con volumen ondulado, split screen, tipografía divertida"}, {"id": 20, "date": "2026-09-05", "day": "Sáb", "pillar": "Service", "topic": "Deep Cleanse vs Brightening", "cta": "Agenda tu evaluación de piel.", "hook": "¿Deep Cleanse o Brightening? Te ayudamos a decidir.", "body": "¿Poros congestionados? Deep Cleanse. ¿Manchas y tono desigual? Brightening. ¿Dudas? Agenda y lo evaluamos contigo.", "action": "Agenda tu evaluación de piel.", "tags": ["#Faciales", "#PielSana", "#DallasTX"], "visual": "Split screen: rostro limpio fresco vs rostro luminoso, etiquetas Deep Cleanse y Brightening, badges $89.99"}, {"id": 21, "date": "2026-09-06", "day": "Dom", "pillar": "Lifestyle", "topic": "Detrás del estudio", "cta": "Te esperamos.", "hook": "Un vistazo a tu próximo momento de paz.", "body": "Espacios limpios, luz natural y una atmósfera pensada para que te desconectes por completo.", "action": "Te esperamos.", "tags": ["#MedSpa", "#DallasTX", "#AmbienteSpa"], "visual": "Interior de estudio spa: camilla, toallas blancas enrolladas, velas, eucalipto, luz de ventana, sin personas, premium"}, {"id": 22, "date": "2026-09-07", "day": "Lun", "pillar": "Trust", "topic": "Higiene y profesionalismo", "cta": "Reserva con total confianza.", "hook": "La higiene no se negocia.", "body": "Herramientas sanitizadas, protocolos estrictos y profesionales capacitados en cada cita. Así cuidamos tu piel.", "action": "Reserva con total confianza.", "tags": ["#Higiene", "#Confianza", "#DallasTX"], "visual": "Bandeja con herramientas de spa limpias y toallas, enfoque clínico elegante, textura limpia y luminosa"}, {"id": 23, "date": "2026-09-08", "day": "Mar", "pillar": "Conversion", "topic": "MARTES 2x1 $89.99", "cta": "Aparta tu cita hoy.", "hook": "Tu recordatorio de la semana: martes 2x1.", "body": "Dos faciales por $89.99. ¿Con quién vas a venir esta vez?", "action": "Aparta tu cita hoy.", "tags": ["#Martes2x1", "#Faciales", "#DallasTX"], "visual": "Dos camillas gemelas con toallas, badge MARTES 2X1 $89.99, paleta salvia con acento azul hielo"}, {"id": 24, "date": "2026-09-09", "day": "Mié", "pillar": "Education", "topic": "Acné: mitos y realidades", "cta": "Consulta con un profesional.", "hook": "El acné no es solo 'de adolescentes'.", "body": "El estrés, la grasa y los poros congestionados pueden provocar brotes a cualquier edad. El Acne Facial ayuda a controlarlos.", "action": "Consulta con un profesional.", "tags": ["#Acne", "#PielSana", "#SkinCare", "#DallasTX"], "visual": "Tarjeta educativa con datos sobre acné, iconografía limpia, sin fotos de casos clínicos, paleta calmada"}, {"id": 25, "date": "2026-09-10", "day": "Jue", "pillar": "Service", "topic": "Extensiones 1-piece Clip'N Go", "cta": "Disponible en beyondthebeauty.com", "hook": "Volumen y largo en minutos, con un solo clip.", "body": "La 1-piece Clip'N Go es ideal si quieres un cambio rápido: un clip, 100% Remy human hair, resultado natural al instante.", "action": "Disponible en beyondthebeauty.com", "tags": ["#ClipNGo", "#HairExtensions", "#RemyHair", "#BeyondTheBeauty"], "visual": "Mujer aplicándose una extensión 1-piece con un solo clip, cabello voluminoso, etiqueta 1-piece Clip'N Go $750"}, {"id": 26, "date": "2026-09-11", "day": "Vie", "pillar": "Engagement", "topic": "Pregunta abierta", "cta": "Escríbenos tu respuesta.", "hook": "¿Cuál es tu mayor preocupación de piel?", "body": "Manchas, brotes, líneas finas, poros... Cuéntanos y te decimos qué facial te conviene.", "action": "Escríbenos tu respuesta.", "tags": ["#SkinConcerns", "#PielSaludable", "#DallasTX"], "visual": "Pregunta grande en tipografía serif sobre fondo texturizado, tarjetas con opciones: manchas, brotes, líneas, poros"}, {"id": 27, "date": "2026-09-12", "day": "Sáb", "pillar": "Conversion", "topic": "Facials desde $89.99", "cta": "Agenda hoy: (956) 656-0544 / (915) 529-8565.", "hook": "Todos nuestros faciales: $89.99.", "body": "Deep Cleanse, Acne, Brightening y Anti-Aging al mismo precio. Calidad premium sin sorpresas.", "action": "Agenda hoy: (956) 656-0544 / (915) 529-8565.", "tags": ["#Faciales", "#PrecioJusto", "#DallasTX"], "visual": "Menú de los 4 faciales con badges $89.99 cada uno, diseño editorial limpio, paleta marfil/dorado"}, {"id": 28, "date": "2026-09-13", "day": "Dom", "pillar": "Brand", "topic": "Piel + cabello", "cta": "Conócenos.", "hook": "Un solo lugar para tu piel y tu cabello.", "body": "Facials premium + tratamientos de crecimiento + extensiones de lujo. Todo lo que necesitas para sentirte increíble.", "action": "Conócenos.", "tags": ["#SolaceByBelowZero", "#Beauty", "#DallasTX"], "visual": "Composición dual: mitad rostro con piel radiante, mitad cabello largo brillante, elegante y premium"}, {"id": 29, "date": "2026-09-14", "day": "Lun", "pillar": "Trust", "topic": "Resultados individuales", "cta": "Agenda tu consulta.", "hook": "Cada piel es diferente: por eso primero te escuchamos.", "body": "Evaluamos tu piel, escuchamos tus objetivos y te recomendamos el tratamiento adecuado. Los resultados individuales varían.", "action": "Agenda tu consulta.", "tags": ["#ConsultaIdeal", "#PielÚnica", "#DallasTX"], "visual": "Esteticista platicando con clienta durante evaluación de piel, luz natural, tono de confianza y calidez"}, {"id": 30, "date": "2026-09-15", "day": "Mar", "pillar": "Conversion", "topic": "Cierre MARTES 2x1", "cta": "Reserva: (956) 656-0544 / (915) 529-8565.", "hook": "Último martes del calendario: 2x1 en faciales.", "body": "Cierra el mes con dos faciales por $89.99. Te esperamos.", "action": "Reserva: (956) 656-0544 / (915) 529-8565.", "tags": ["#Martes2x1", "#Faciales", "#DallasTX"], "visual": "Cierre premium: badge MARTES 2X1 $89.99 central, toallas y eucalipto, luz dorada de atardecer"}];
+const ADS=[{"id": 1, "name": "META-01", "pillar": "Awareness", "img": "images/day01.png", "topic": "Bienvenido a tu nuevo med spa en Dallas", "cta": "Reservar ahora", "budget": "15%", "copy": "Bienvenido a Solace by Below Zero ✨ Tu nuevo med spa en Dallas para faciales premium, cuidado del cabello y extensiones de lujo. Facials desde $89.99. Reserva: (956) 656-0544 / (915) 529-8565.", "compliance": ""}, {"id": 2, "name": "META-02", "pillar": "Educación", "img": "images/day05.png", "topic": "4 faciales, un mismo precio: $89.99", "cta": "Reservar ahora", "budget": "15%", "copy": "Deep Cleanse, Acne, Brightening o Anti-Aging — todos a $89.99. ¿Cuál necesita tu piel? Déjanos evaluarla y te recomendamos el facial ideal.", "compliance": ""}, {"id": 3, "name": "META-03", "pillar": "Oferta", "img": "images/day27.png", "topic": "Todos nuestros faciales: $89.99", "cta": "Reservar ahora", "budget": "20%", "copy": "Calidad premium de med spa sin sorpresas: Deep Cleanse, Acne, Brightening y Anti-Aging a $89.99. Agenda hoy: (956) 656-0544 / (915) 529-8565.", "compliance": ""}, {"id": 4, "name": "META-04", "pillar": "Oferta 2x1", "img": "images/day02.png", "topic": "Martes 2x1: dos faciales por $89.99", "cta": "Reservar ahora", "budget": "20%", "copy": "Solo los martes: 2x1 en todos nuestros faciales por $89.99. Llega con tu amiga, hermana o pareja. Aparta tu cita: (956) 656-0544 / (915) 529-8565.", "compliance": "⚠️ Confirmar términos del 2x1 con el cliente antes de activar."}, {"id": 5, "name": "META-05", "pillar": "Crecimiento de cabello", "img": "images/day13.png", "topic": "Cuidado especializado para tu cuero cabelludo", "cta": "Enviar mensaje", "budget": "10%", "copy": "Tratamientos de crecimiento capilar con evaluación profesional. Consulta si el tratamiento es adecuado para ti. Resultados individuales varían.", "compliance": ""}, {"id": 6, "name": "META-06", "pillar": "Extensiones", "img": "images/day17.png", "topic": "Extensiones Remy desde $650", "cta": "Comprar ahora", "budget": "10%", "copy": "Clip N' Go 18\" — Remy human hair, 7 piezas, en minutos. $650. 1-piece Clip'N Go $750. Envío a todo EE. UU. → beyondthebeauty.com", "compliance": ""}, {"id": 7, "name": "META-07", "pillar": "Anti-Aging / Brightening", "img": "images/day08.png", "topic": "Firmeza y luminosidad: consulta primero", "cta": "Enviar mensaje", "budget": "5%", "copy": "Líneas finas, manchas o tono desigual: el Anti-Aging y el Brightening Facial ayudan a mejorar la apariencia de tu piel. Consulta cuál es ideal para ti.", "compliance": ""}, {"id": 8, "name": "META-08", "pillar": "Retargeting", "img": "images/day16.png", "topic": "Tu piel está a una cita de distancia", "cta": "Reservar ahora", "budget": "5%", "copy": "¿Ya viste nuestros faciales a $89.99? Los martes son 2x1. Reserva hoy: (956) 656-0544 / (915) 529-8565.", "compliance": ""}];
+
+const state={};
+POSTS.forEach(p=>state['p'+p.id]={status:p.status||'pending',note:p.note||''});
+ADS.forEach(a=>state['a'+a.id]={status:'pending',note:''});
+
+function esc(s){return (s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function pad(n){return String(n).padStart(2,'0')}
+
+function postCard(p){
+  const st=state['p'+p.id];
+  const flag=st.status||'pending';
+  const flagtxt=flag==='approved'?'APROBADO':flag==='changes'?'CAMBIOS':'PENDIENTE';
+  const img=`images/day${pad(p.id)}.png`;
+  const copy=[p.hook,p.body,p.action].filter(Boolean).join(' ');
+  return `<article class="card reveal in ${flag}">
+    <div class="top"><div class="dt">${esc(p.date)} <small>${esc(p.day)}</small></div><div class="pill">${esc(p.pillar)}</div></div>
+    <div class="imgwrap" onclick="zoom('${img}')">
+      <span class="statusflag ${flag}">${flagtxt}</span>
+      <img loading="lazy" src="${img}" alt="Día ${p.id}: ${esc(p.topic)}" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
+      <div class="ph" style="display:none">🎨 Generando imagen…<br><small>${esc(p.visual)}</small></div>
+    </div>
+    <div class="body">
+      <div class="topic">${esc(p.topic)}</div>
+      ${st.note&&st.status==='changes'?`<div class="changes-req"><span style="color:var(--changes);font-weight:700;font-size:.78rem;">✏️ CAMBIOS SOLICITADOS</span><br><span style="color:var(--cream);font-size:.75rem;">${esc(st.note)}</span></div>`:''}
+      <div class="tags"><span class="tag">${esc(p.pillar)}</span><span class="tag">CTA: ${esc(p.cta)}</span></div>
+      <div class="aida">${esc(copy)}</div>
+    </div>
+    <div class="actions">
+      <button class="btn approve ${st.status==='approved'?'on':''}" onclick="setStatus('p${p.id}','approved')">✅ Aprobar</button>
+      <button class="btn change ${st.status==='changes'?'on':''}" onclick="setStatus('p${p.id}','changes')">✏️ Solicitar cambios</button>
+      <textarea class="note" placeholder="¿Qué te gustaría cambiar?" oninput="setNote('p${p.id}',this.value)">${esc(st.note)}</textarea>
+    </div>
+  </article>`;
+}
+
+function adCard(a){
+  const st=state['a'+a.id];
+  const flag=st.status||'pending';
+  const flagtxt=flag==='approved'?'APROBADO':flag==='changes'?'CAMBIOS':'PENDIENTE';
+  const img=a.img;
+  return `<article class="card ad reveal in ${flag}">
+    <div class="top"><div class="dt">${esc(a.name)}</div><div class="adtag">${esc(a.pillar)}</div></div>
+    <div class="imgwrap" onclick="zoom('${img}')">
+      <span class="statusflag ${flag}">${flagtxt}</span>
+      <img loading="lazy" src="${img}" alt="Ad: ${esc(a.topic)}" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
+      <div class="ph" style="display:none">🎨 Generando imagen…</div>
+    </div>
+    <div class="body">
+      <div class="topic">${esc(a.topic)}</div>
+      <div class="tags"><span class="tag">FB AD</span><span class="tag">${esc(a.budget)}</span><span class="tag">CTA: ${esc(a.cta)}</span></div>
+      ${a.compliance?`<div class="compliance">${esc(a.compliance)}</div>`:''}
+      <div class="aida">${esc(a.copy)}</div>
+    </div>
+    <div class="actions">
+      <button class="btn approve ${st.status==='approved'?'on':''}" onclick="setStatus('a${a.id}','approved')">✅ Aprobar</button>
+      <button class="btn change ${st.status==='changes'?'on':''}" onclick="setStatus('a${a.id}','changes')">✏️ Solicitar cambios</button>
+      <textarea class="note" placeholder="¿Qué te gustaría cambiar?" oninput="setNote('a${a.id}',this.value)">${esc(st.note)}</textarea>
+    </div>
+  </article>`;
+}
+
+function render(){
+  document.getElementById('grid').innerHTML=POSTS.map(postCard).join('');
+  document.getElementById('ads').innerHTML=ADS.map(adCard).join('');
+  updateCounts();
+}
+function zoom(src){document.getElementById('lbimg').src=src;document.getElementById('lb').classList.add('on')}
+function setStatus(k,s){state[k].status=(state[k].status===s?null:s);render()}
+function setNote(k,v){state[k].note=v}
+function updateCounts(){
+  let ok=0,ch=0,n=0;
+  Object.entries(state).forEach(([k,s])=>{if(!k.startsWith('p'))return;if(s.status==='approved')ok++;else if(s.status==='changes')ch++;else n++});
+  document.getElementById('cOk').textContent=ok;
+  document.getElementById('cCh').textContent=ch;
+  document.getElementById('cPe').textContent=n;
+}
+function toast(msg,color){
+  const t=document.getElementById('toast');t.textContent=msg;t.style.background=color||'#14c96e';t.style.display='block';
+  setTimeout(()=>t.style.display='none',4000);
+}
+async function submitReview(){
+  const name=document.getElementById('clientName').value.trim();
+  if(!name){toast('Escribe tu nombre','#E8A13D');return}
+  if(!SUPABASE_ANON){toast('Guardado desactivado en esta vista','#E8A13D');return}
+  const btn=document.getElementById('sendBtn');btn.disabled=true;btn.textContent='Enviando…';
+  const review={posts:POSTS.map(p=>({id:p.id,type:'post',status:state['p'+p.id].status||'pending',note:state['p'+p.id].note||''})),
+    ads:ADS.map(a=>({id:a.id,type:'ad',status:state['a'+a.id].status||'pending',note:state['a'+a.id].note||''}))};
+  try{
+    const r=await fetch(`${SUPABASE_URL}/rest/v1/approvals`,{method:'POST',
+      headers:{'Content-Type':'application/json','apikey':SUPABASE_ANON,'Authorization':`Bearer ${SUPABASE_ANON}`,'Prefer':'return=minimal'},
+      body:JSON.stringify({client:CLIENT,campaign:CAMPAIGN,client_name:name,review})});
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    toast('✅ ¡Gracias! Tu aprobación fue recibida.');btn.textContent='✅ Enviado';
+  }catch(e){toast('Error: '+e.message,'#E8A13D');btn.disabled=false;btn.textContent='✅ Enviar aprobación'}
+}
+async function mergeSupabase(){
+  // ?team=1 → el equipo ve la misma página poblada con las respuestas del cliente
+  try{
+    const r=await fetch(`${SUPABASE_URL}/rest/v1/approvals?client=eq.${CLIENT}&campaign=eq.${CAMPAIGN}&order=created_at.desc&limit=1`,
+      {headers:{'apikey':SUPABASE_ANON,'Authorization':`Bearer ${SUPABASE_ANON}`}});
+    if(!r.ok)return;
+    const rows=await r.json();
+    if(!rows.length)return;
+    const rev=rows[0].review||{};
+    (rev.posts||[]).forEach(x=>{const k='p'+x.id;if(state[k]){state[k].status=x.status||'pending';state[k].note=x.note||''}});
+    (rev.ads||[]).forEach(x=>{const k='a'+x.id;if(state[k]){state[k].status=x.status||'pending';state[k].note=x.note||''}});
+    render();
+    const badge=document.createElement('div');badge.className='team-badge';
+    badge.textContent=`👁 Equipo — respuestas de ${rows[0].client_name||'cliente'} cargadas`;
+    document.body.appendChild(badge);
+  }catch(e){}
+}
+render();
+if(new URLSearchParams(location.search).get('team'))mergeSupabase();
+</script>
+</body>
+</html>

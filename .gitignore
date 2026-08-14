@@ -1,0 +1,8 @@
+build_portal.py
+generate_batch.py
+qa_batch.py
+make_contact_sheets.py
+contact_sheet_30.png
+contact_g*.png
+images/pilot_*
+*.tmp.png
